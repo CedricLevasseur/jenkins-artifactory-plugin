@@ -287,10 +287,11 @@ public abstract class ReleaseAction<P extends AbstractProject & BuildableItem,
         project.checkPermission(ArtifactoryPlugin.RELEASE);
         readRequestParams(req, false);
         // Schedule release build
-        if (project.scheduleBuild(0, new Cause.UserIdCause(), this)) {
-            // Redirect to the project page
-            resp.sendRedirect(project.getAbsoluteUrl());
-        }
+//        if (project.scheduleBuild(0, new Cause.UserIdCause(), this)) {
+//            // Redirect to the project page
+//            resp.sendRedirect(project.getAbsoluteUrl());
+//        }
+        project.doBuildWithParameters(StaplerRequest req, StaplerResponse resp, 0);
     }
 
     private void overrideStagingPluginParams(StaplerRequest req) throws Exception {
